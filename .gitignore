@@ -1,0 +1,11 @@
+.DS_Store
+.idea
+qingke/dist/electron/*
+qingke/dist/web/*
+qingke/build/*
+!build/icons
+qingke/node_modules/
+qingke/npm-debug.log
+qingke/npm-debug.log.*
+qingke/thumbs.db
+!.gitkeep
