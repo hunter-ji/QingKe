@@ -7,8 +7,18 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "landing-page",
+      name: "首页",
       component: require("@/components/Home/index").default
+    },
+    {
+      path: "/class",
+      name: "分类",
+      component: require("@/components/Classification/index").default
+    },
+    {
+      path: "/info",
+      name: "详情",
+      component: require("@/components/Site/index").default
     },
     {
       path: "*",
