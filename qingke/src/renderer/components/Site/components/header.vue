@@ -1,9 +1,12 @@
 <template>
   <div class="site-header">
     <div class="site-header-left">
-      <el-image class="site-header-img" :src="siteInfo.site_logo">
+      <el-image
+        class="site-header-img"
+        :src="siteInfo.site_logo || 'http://localhost:8080/test.jpg'"
+      >
         <div slot="error" class="image-slot">
-          <i class="el-icon-picture-outline"></i>
+          <i class="el-icon-picture-outline" />
         </div>
       </el-image>
     </div>
@@ -26,17 +29,7 @@
 export default {
   name: "myHeader",
   props: {
-    siteInfo: {
-      type: Object,
-      default: function() {
-        return {
-          site_id: 1,
-          site_logo: "http://localhost:8080/test.jpg",
-          site_name: "Github",
-          site_url: "https://github.com"
-        };
-      }
-    }
+    siteInfo: Object
   }
 };
 </script>

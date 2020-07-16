@@ -31,4 +31,15 @@ $color3: #ffffcc;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
     sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
 }
+
+.nothing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  font-size: 30px;
+  font-weight: bold;
+  color: #909399;
+  font-style: oblique;
+}
 </style>

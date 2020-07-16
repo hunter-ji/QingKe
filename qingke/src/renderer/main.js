@@ -9,7 +9,15 @@ import "normalize.css/normalize.css";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 
+import db from "./datastore";
+
+import VueClipboard from "vue-clipboard2";
+
 Vue.use(ElementUI);
+Vue.prototype.$db = db;
+
+VueClipboard.config.autoSetContainer = true;
+Vue.use(VueClipboard);
 
 if (!process.env.IS_WEB) Vue.use(require("vue-electron"));
 Vue.http = Vue.prototype.$http = axios;

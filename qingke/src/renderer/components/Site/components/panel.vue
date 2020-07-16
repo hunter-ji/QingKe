@@ -87,13 +87,52 @@ export default {
         this.local_info.remark = null;
       }, 300);
     },
+    async handle_data() {
+      if (this.status) {
+        // 新增
+        this.$db
+          .get("site_item")
+          .insert({
+            site_id: this.$route.params.id,
+            account: this.local_info.account,
+            password: this.local_info.password,
+            remark: this.local_info.remark ? this.local_info.remark : ""
+          })
+          .write();
+      } else {
+        // 修改
+        this.$db
+          .get("site_item")
+          .find({
+            id: this.local_info.id
+          })
+          .assign({
+            site_id: this.$route.params.id,
+            account: this.local_info.account,
+            password: this.local_info.password,
+            remark: this.local_info.remark ? this.local_info.remark : ""
+          })
+          .write();
+      }
+    },
     submit() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          this.$message({
-            message: this.status ? "新增成功" : "编辑成功",
-            type: "success"
-          });
+          this.handle_data()
+            .then(() => {
+              this.$message({
+                message: this.status ? "新增成功" : "编辑成功",
+                type: "success"
+              });
+              this.cancel();
+              this.$emit("submit", true);
+            })
+            .catch(() => {
+              this.$message({
+                message: "操作失败",
+                type: "error"
+              });
+            });
         } else {
           return false;
         }

@@ -16,7 +16,7 @@ export default new Router({
       component: require("@/components/Classification/index").default
     },
     {
-      path: "/info",
+      path: "/info/:id",
       name: "详情",
       component: require("@/components/Site/index").default
     },

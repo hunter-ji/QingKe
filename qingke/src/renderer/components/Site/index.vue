@@ -1,13 +1,24 @@
 <template>
   <div class="container">
-    <el-page-header @back="goBack" content="详情" />
+    <el-page-header @back="goBack" content="账号详情" />
 
     <!--头部-->
-    <my-header />
+    <my-header :site-info="siteInfo" />
 
     <!--详细内容-->
     <div class="site-content__container">
-      <my-content class="site-content" v-for="item in 5" :key="item" />
+      <span class="nothing" v-if="!site_item.length">
+        <i class="el-icon-info" />
+        暂无数据
+      </span>
+      <my-content
+        class="site-content"
+        v-else
+        v-for="(item, index) in site_item"
+        :key="index"
+        :info="item"
+        @delete="contentDelete"
+      />
       <el-button
         class="site-btn__add"
         icon="el-icon-plus"
@@ -18,7 +29,12 @@
     </div>
 
     <!--新增-->
-    <panel :dialog="dialog" :status="dialogStatus" @toggle="dialogToggle" />
+    <panel
+      :dialog="dialog"
+      :status="dialogStatus"
+      @toggle="dialogToggle"
+      @submit="dialogSubmit"
+    />
   </div>
 </template>
 
@@ -29,19 +45,6 @@ import panel from "./components/panel";
 
 export default {
   name: "Site",
-  props: {
-    siteInfo: {
-      type: Object,
-      default: function() {
-        return {
-          site_id: 1,
-          site_logo: "http://localhost:8080/test.jpg",
-          site_name: "Github",
-          site_url: "https://github.com"
-        };
-      }
-    }
-  },
   components: {
     myHeader,
     myContent,
@@ -50,16 +53,49 @@ export default {
   data() {
     return {
       dialog: false,
-      dialogStatus: true
+      dialogStatus: true,
+      siteInfo: null,
+      site_item: []
     };
   },
   methods: {
+    fetchData() {
+      // 获取站点信息
+      this.siteInfo = this.$db
+        .get("site_lists")
+        .find({ id: this.$route.params.id })
+        .value();
+    },
+    getSiteItem() {
+      // 获取站点下的账户信息
+      this.site_item = this.$db
+        .get("site_item")
+        .filter({
+          site_id: this.$route.params.id
+        })
+        .value();
+    },
     goBack() {
       this.$router.push("/");
     },
     dialogToggle(dialog) {
       this.dialog = dialog;
+    },
+    dialogSubmit() {
+      this.getSiteItem();
+    },
+    contentDelete(id) {
+      this.site_item.splice(
+        this.site_item.findIndex(item => item.id === id),
+        1
+      );
     }
+  },
+  created() {
+    this.fetchData();
+  },
+  mounted() {
+    this.getSiteItem();
   }
 };
 </script>

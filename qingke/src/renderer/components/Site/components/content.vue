@@ -10,7 +10,8 @@
         </div>
         <div class="content-tool">
           <i class="el-icon-more-outline" @click="dialog = true" />
-          <i class="el-icon-document-copy" />
+          <i class="el-icon-document-copy" @click="clipPass" />
+          <i class="el-icon-delete" @click="handleDelete(info.id)" />
         </div>
       </div>
     </el-card>
@@ -52,6 +53,48 @@ export default {
   methods: {
     dialogToggle(dialog) {
       this.dialog = dialog;
+    },
+    handleDelete(id) {
+      this.$confirm("此操作将永久删除该账号, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          // 执行删除
+          this.$db
+            .get("site_item")
+            .remove({ id: id })
+            .write();
+
+          this.$emit("delete", id);
+
+          this.$message({
+            type: "success",
+            message: "删除成功!"
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
+    },
+    clipPass() {
+      this.$copyText(this.info.password)
+        .then(() => {
+          this.$message({
+            message: "已复制到粘贴板",
+            type: "success"
+          });
+        })
+        .catch(() => {
+          this.$message({
+            message: "获取密码失败",
+            tyep: "error"
+          });
+        });
     }
   },
   filters: {
@@ -88,6 +131,10 @@ export default {
       margin-left: 10px;
       display: block;
       cursor: pointer;
+    }
+
+    i.el-icon-delete:hover {
+      color: #f56c6c;
     }
   }
 }

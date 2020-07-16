@@ -1,13 +1,13 @@
 <template>
   <div>
     <el-card shadow="hover" class="class-card">
-      <div @click="jumpTo">
+      <div @click="jumpTo(siteInfo.id)">
         <el-row>
           <el-col :span="8">
             <div class="class-left">
               <el-image class="class-img" :src="siteInfo.site_logo">
                 <div slot="error" class="image-slot">
-                  <i class="el-icon-picture-outline"></i>
+                  <i class="el-icon-picture-outline" />
                 </div>
               </el-image>
             </div>
@@ -36,7 +36,7 @@ export default {
       type: Object,
       default: function() {
         return {
-          site_id: 1,
+          id: 1,
           site_logo: "http://localhost:8080/test.jpg",
           site_name: "Github",
           site_url: "https://github.com"
@@ -45,9 +45,8 @@ export default {
     }
   },
   methods: {
-    jumpTo() {
-      console.log("site_id");
-      this.$router.push("/info");
+    jumpTo(id) {
+      this.$router.push(`/info/${id}`);
     }
   }
 };
@@ -65,8 +64,8 @@ export default {
 
   .class-img {
     border-radius: 50%;
-    height: 60%;
-    width: 60%;
+    height: 80px;
+    width: 80px;
   }
 }
 

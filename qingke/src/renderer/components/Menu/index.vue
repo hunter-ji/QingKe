@@ -20,6 +20,10 @@
         <i class="el-icon-paperclip"></i>
         <span slot="title">分类</span>
       </el-menu-item>
+      <el-menu-item index="/class">
+        <i class="el-icon-setting"></i>
+        <span slot="title">设置</span>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
