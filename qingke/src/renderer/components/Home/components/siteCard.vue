@@ -17,7 +17,7 @@
               <div class="class-right__item">
                 <div class="class-title">{{ siteInfo.site_name }}</div>
               </div>
-              <div class="class-right__item">
+              <div class="class-right__item hidden-sm-only">
                 <div class="class-content">{{ siteInfo.site_url }}</div>
               </div>
             </div>
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import "element-ui/lib/theme-chalk/display.css";
+
 export default {
   name: "siteCard",
   props: {
@@ -64,8 +66,10 @@ export default {
 
   .class-img {
     border-radius: 50%;
-    height: 80px;
-    width: 80px;
+    max-height: 80px;
+    max-width: 80px;
+    min-height: 60px;
+    min-width: 60px;
   }
 }
 

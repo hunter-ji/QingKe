@@ -9,7 +9,7 @@
           {{ info.remark | remarkLength(8) }}
         </div>
         <div class="content-tool">
-          <i class="el-icon-more-outline" @click="dialog = true" />
+          <i class="el-icon-more-outline" @click="handleChange(info)" />
           <i class="el-icon-document-copy" @click="clipPass" />
           <i class="el-icon-delete" @click="handleDelete(info.id)" />
         </div>
@@ -19,7 +19,7 @@
     <!--新增和编辑拟态框-->
     <panel
       :dialog="dialog"
-      :info="info"
+      :info="targetInfo"
       :status="dialogStatus"
       @toggle="dialogToggle"
     />
@@ -47,12 +47,17 @@ export default {
   data() {
     return {
       dialog: false,
-      dialogStatus: false
+      dialogStatus: false,
+      targetInfo: null
     };
   },
   methods: {
     dialogToggle(dialog) {
       this.dialog = dialog;
+    },
+    handleChange(info) {
+      this.targetInfo = JSON.parse(JSON.stringify(info));
+      this.dialog = true;
     },
     handleDelete(id) {
       this.$confirm("此操作将永久删除该账号, 是否继续?", "提示", {

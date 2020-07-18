@@ -2,7 +2,8 @@
   <div class="container">
     <div class="home-header">
       <el-button type="primary" icon="el-icon-plus" @click="insertData"
-        >添加</el-button
+      >添加
+      </el-button
       >
       <el-input v-model="search" placeholder="搜索" style="width: 500px;">
         <i slot="prefix" class="el-input__icon el-icon-search" />
@@ -24,9 +25,9 @@
     <div v-show="!search && handleData.length" class="home-pageination">
       <el-pagination
         background
-        layout="prev, pager, next"
         :page-size="pagesize"
         :total="site_lists.length"
+        layout="prev, pager, next"
         @current-change="changeCurrent"
       />
     </div>
