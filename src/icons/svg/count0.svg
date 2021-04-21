@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60 (88103) - https://sketch.com -->
+    <title>注册用户</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="29.0579772%" x2="110.299927%" y2="119.715476%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0.181545017" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="首页" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="平台-首页" transform="translate(-203.000000, -158.000000)" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <g id="注册用户" transform="translate(164.000000, 126.000000)">
+                <g id="注册用户-2" transform="translate(39.000000, 32.000000)">
+                    <g id="注册用户">
+                        <path d="M8,22 C3.5185394,21.9989227 0,21.9532791 0,19.9738441 L0,19.9738441 L0,19.5695629 C0,15.6872751 3.41997837,13 8.02813608,13 L8,13 L14,13 L13.9718639,13 C18.5800216,13 22,15.6872751 22,19.5695629 L22,19.9738441 C22,21.9531306 18.4819887,21.9989158 14.0008265,21.9999749 L14,22 L8,22 Z M10.9999877,0 C14.3302097,0 17,2.66091511 17,5.98806039 C17,9.31520567 14.308095,11.9997176 10.9999877,11.9997176 L10.9999877,11.9997176 C7.71276103,12 5.02186795,9.31546244 5,6.01165717 C5,2.68451189 7.69163353,0 10.9999877,0 Z" id="形状结合"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
