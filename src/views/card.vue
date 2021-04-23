@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { saveLists } from "../utils/dbStore";
+
 export default {
   props: {
     info: Object,
@@ -31,13 +33,14 @@ export default {
       });
     },
     handleDel() {
-      this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
+      this.$confirm("此操作将删除该密码, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning",
       })
         .then(() => {
           this.$store.commit("delSimpleLists", this.info);
+          saveLists(this.$store.state.lists);
         })
         .catch(() => {});
     },

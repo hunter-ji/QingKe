@@ -5,8 +5,8 @@
     <div class="home-content">
       <input
         class="normal-bg home-search"
-        palceholder="搜索..."
         v-model="search"
+        placeholder="搜索..."
       />
       <div class="home-card-list">
         <card v-for="(item, index) in handleData" :key="index" :info="item" />
@@ -18,7 +18,7 @@
 <script>
 import nav_header from "../components/navHeader";
 import card from "./card";
-import { writeFile } from "../utils/file";
+import db from "../utils/dbStore";
 
 export default {
   components: {
@@ -33,6 +33,9 @@ export default {
   },
   methods: {
     fetchData() {
+      // this.lists = this.$store.state.lists;
+      const lists = db.get("sites").value();
+      this.$store.commit("updateLists", lists);
       this.lists = this.$store.state.lists;
     },
   },
@@ -50,19 +53,6 @@ export default {
         });
       }
       return this.lists;
-    },
-    storeLists() {
-      console.log("eaaaa");
-      writeFile("./seeds", this.$store.state.lists);
-      return this.$store.state.lists;
-    },
-  },
-  watch: {
-    storeList(newVal) {
-      this.lists = newVal;
-      // 写入文件
-      console.log("bbbbb");
-      // writeFile("~/seeds", newVal);
     },
   },
 };
@@ -124,5 +114,9 @@ export default {
 .home-card-list::-webkit-scrollbar-thumb {
   background: hsla(0, 0%, 100%, 0.35);
   border-radius: 12px;
+}
+
+input::-webkit-input-placeholder {
+  color: #c0c4cc;
 }
 </style>

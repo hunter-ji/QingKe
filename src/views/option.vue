@@ -4,10 +4,18 @@
     <div class="option-content">
       <el-form ref="form" :model="form" label-width="80px" class="option-form">
         <el-form-item label="key">
-          <input class="normal-bg home-input" v-model="form.key" />
+          <input
+            class="normal-bg home-input"
+            v-model="form.key"
+            maxlength="40"
+          />
         </el-form-item>
         <el-form-item label="value">
-          <input class="normal-bg home-input" v-model="form.value" />
+          <input
+            class="normal-bg home-input"
+            v-model="form.value"
+            maxlength="50"
+          />
         </el-form-item>
         <el-form-item>
           <div class="option-btn-group">
@@ -32,7 +40,7 @@
 
 <script>
 import navSubHeader from "../components/navSubHeader";
-import { writeFile } from "../utils/file";
+import { saveLists } from "../utils/dbStore";
 
 export default {
   components: {
@@ -92,15 +100,15 @@ export default {
           ...this.form,
           oldKey: this.oldForm.key,
         });
-        writeFile("./seeds", this.$store.state.lists);
       } else {
         // 新增
         this.$store.commit("addLists", {
           ...this.form,
           oldKey: this.oldForm.key,
         });
-        writeFile("./seeds", this.$store.state.lists);
       }
+
+      saveLists(this.$store.state.lists);
 
       this.$notify({
         title: "提示",
