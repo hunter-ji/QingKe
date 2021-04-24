@@ -1,6 +1,8 @@
 <template>
   <div class="nav-container">
-    <i class="el-icon-close" @click="handleClose" />
+    <span class="nav-bg">
+      <i class="el-icon-close" @click="handleClose" />
+    </span>
     <div class="nav-tools" @click="jumpTo">
       <i class="el-icon-plus" />
     </div>
@@ -32,8 +34,11 @@ export default {
   -webkit-app-region: drag;
 }
 
-.nav-container i {
-  margin: 5px 12px;
+.nav-bg {
+  width: 66px;
+  background: hsla(0, 0%, 100%, 0.15);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 11px 12px;
 }
 
 .nav-tools {
@@ -41,6 +46,10 @@ export default {
   padding: 1px;
   margin: 12px 4px;
   border-radius: 4px;
+}
+
+.nav-tools i {
+  margin: 5px 12px;
 }
 
 .nav-tools:hover {

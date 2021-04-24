@@ -2,14 +2,24 @@
   <div class="home-container">
     <nav_header />
 
-    <div class="home-content">
-      <input
-        class="normal-bg home-search"
-        v-model="search"
-        placeholder="搜索..."
-      />
-      <div class="home-card-list">
-        <card v-for="(item, index) in handleData" :key="index" :info="item" />
+    <div class="home-layout">
+      <!--左侧分组-->
+      <left-nav @switchMenu="switchMenu" />
+
+      <!--内容-->
+      <div class="home-content" v-if="handleData.length">
+        <input
+          class="normal-bg home-search"
+          v-model="search"
+          placeholder="搜索..."
+        />
+        <div class="home-card-list">
+          <card v-for="(item, index) in handleData" :key="index" :info="item" />
+        </div>
+      </div>
+      <div v-else class="home-empty">
+        <i class="el-icon-milk-tea" />
+        <div>空空如也～～继续喝奶茶～～</div>
       </div>
     </div>
   </div>
@@ -17,12 +27,14 @@
 
 <script>
 import nav_header from "../components/navHeader";
+import leftNav from "../components/leftNav";
 import card from "./card";
 import db from "../utils/dbStore";
 
 export default {
   components: {
     nav_header,
+    leftNav,
     card,
   },
   data() {
@@ -37,6 +49,16 @@ export default {
       const lists = db.get("sites").value();
       this.$store.commit("updateLists", lists);
       this.lists = this.$store.state.lists;
+      this.switchMenu(this.$store.state.menuActive);
+    },
+    switchMenu(menu) {
+      if (menu === "全部") {
+        this.lists = this.$store.state.lists;
+      } else {
+        this.lists = this.$store.state.lists.filter((item) => {
+          return item.category === this.$store.state.menuActive;
+        });
+      }
     },
   },
   mounted() {
@@ -64,17 +86,26 @@ export default {
   flex-direction: column;
 }
 
+.home-layout {
+  width: 100%;
+  height: 560px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .home-content {
-  padding: 24px 0 24px 100px;
+  padding: 24px 0 24px 80px;
   display: flex;
   flex-direction: column;
   /*align-items: center;*/
   justify-content: flex-start;
   overflow-y: auto;
+  width: 700px;
 }
 
 .home-search {
-  width: 600px;
+  width: 500px;
   height: 30px;
   border: 1px white;
   border-radius: 4px;
@@ -118,5 +149,24 @@ export default {
 
 input::-webkit-input-placeholder {
   color: #c0c4cc;
+}
+
+.home-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: #606266;
+}
+
+.home-empty i {
+  font-size: 46px;
+}
+
+.home-empty div {
+  font-size: 20px;
+  margin-top: 30px;
 }
 </style>

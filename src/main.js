@@ -7,17 +7,20 @@ import "normalize.css";
 
 import "@/icons";
 
-import { Notification, Form, FormItem, MessageBox } from "element-ui";
+import { Notification, Form, FormItem, MessageBox, Dialog } from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 
 import VueClipboard from "vue-clipboard2";
 
-Vue.use(VueClipboard);
 Vue.config.productionTip = false;
+
+Vue.use(VueClipboard);
+
 Vue.prototype.$notify = Notification;
 Vue.prototype.$confirm = MessageBox.confirm;
 Vue.use(Form);
 Vue.use(FormItem);
+Vue.use(Dialog);
 
 new Vue({
   router,

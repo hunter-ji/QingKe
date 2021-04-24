@@ -6,9 +6,7 @@
 
 <style>
 body {
-  /*background: url("./assets/bg.jpeg") no-repeat;*/
   background: hsla(0, 0%, 100%, 0.15);
-  /*background-size: 100% 100%;*/
   backdrop-filter: blur(10px);
   height: 100vh;
 }
@@ -18,14 +16,16 @@ body {
   backdrop-filter: blur(20px);
 }
 
-div.el-notification.left {
-  background: hsla(0, 0%, 100%, 0.35);
-  backdrop-filter: blur(20px);
-}
-
 div.el-message-box {
   border: none;
   background: hsla(0, 0%, 100%, 0.75);
+  backdrop-filter: blur(20px);
+}
+
+div.el-notification.left,
+div.el-dialog__header,
+div.el-dialog__body {
+  background: hsla(0, 0%, 100%, 0.35);
   backdrop-filter: blur(20px);
 }
 </style>
