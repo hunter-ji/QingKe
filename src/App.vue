@@ -6,7 +6,7 @@
 
 <style>
 body {
-  background: hsla(0, 0%, 100%, 0.15);
+  background: hsla(0, 0%, 100%, 0.2);
   backdrop-filter: blur(10px);
   height: 100vh;
 }

@@ -1,7 +1,8 @@
 <template>
   <div class="nav-container">
     <span class="nav-bg">
-      <i class="el-icon-close" @click="handleClose" />
+      <i class="el-icon-close nav-icon" @click="handleClose" />
+      <i class="el-icon-minus nav-icon" @click="handleMin" />
     </span>
     <div class="nav-tools" @click="jumpTo">
       <i class="el-icon-plus" />
@@ -16,12 +17,26 @@ export default {
       let w = require("electron").remote.getCurrentWindow();
       w.close();
     },
+    handleMin() {
+      let w = require("electron").remote.getCurrentWindow();
+      w.minimize();
+    },
     jumpTo() {
       this.$router.push("/option");
     },
   },
 };
 </script>
+
+<style>
+.nav-icon {
+  color: #909399;
+}
+
+.nav-icon:hover {
+  color: #606266;
+}
+</style>
 
 <style scoped>
 .nav-container {
@@ -39,6 +54,10 @@ export default {
   background: hsla(0, 0%, 100%, 0.15);
   -webkit-backdrop-filter: blur(20px);
   padding: 11px 12px;
+}
+
+.nav-bg i.el-icon-minus {
+  margin-left: 24px;
 }
 
 .nav-tools {

@@ -1,7 +1,8 @@
 <template>
   <div class="nav-container">
-    <i class="el-icon-close" @click="handleClose" />
-    <i class="el-icon-back" @click="jumpTo" />
+    <i class="el-icon-close nav-icon" @click="handleClose" />
+    <i class="el-icon-minus nav-icon" @click="handleMin" />
+    <i class="el-icon-back nav-icon" @click="jumpTo" />
   </div>
 </template>
 
@@ -11,6 +12,10 @@ export default {
     handleClose() {
       let w = require("electron").remote.getCurrentWindow();
       w.close();
+    },
+    handleMin() {
+      let w = require("electron").remote.getCurrentWindow();
+      w.minimize();
     },
     jumpTo() {
       this.$router.push("/");

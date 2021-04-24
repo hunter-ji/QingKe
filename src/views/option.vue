@@ -39,6 +39,12 @@
           <div class="option-btn-group">
             <div
               class="normal-bg option-btn option-cancel-btn"
+              @click="handleGenPass"
+            >
+              生成随机密码
+            </div>
+            <div
+              class="normal-bg option-btn option-cancel-btn"
               @click="handleClose"
             >
               取消
@@ -59,6 +65,7 @@
 <script>
 import navSubHeader from "../components/navSubHeader";
 import { saveLists } from "../utils/dbStore";
+import { randomPassword } from "../utils/randomPass";
 
 export default {
   components: {
@@ -101,6 +108,9 @@ export default {
         category: "",
       };
     },
+    handleGenPass() {
+      this.form.value = randomPassword(20);
+    },
     handleClose() {
       this.$router.back();
       setTimeout(() => {
@@ -108,6 +118,15 @@ export default {
       }, 300);
     },
     handleSubmit() {
+      if (!this.form.key || !this.form.value) {
+        this.$notify({
+          title: "提示",
+          message: "站点和密码不可为空",
+          position: "bottom-left",
+        });
+        return;
+      }
+
       const dataIndex = this.$store.state.lists.findIndex(
         (item) => item.key === this.form.key
       );
@@ -207,7 +226,7 @@ export default {
   padding: 0 24px;
   border-radius: 4px;
   margin-left: 12px;
-  cursor: pointer;
+  cursor: default;
   color: #606266;
 }
 

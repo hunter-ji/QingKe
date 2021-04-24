@@ -5,8 +5,6 @@ import router from "./router";
 import store from "./store";
 import "normalize.css";
 
-import "@/icons";
-
 import { Notification, Form, FormItem, MessageBox, Dialog } from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 

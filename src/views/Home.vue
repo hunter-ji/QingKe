@@ -17,10 +17,7 @@
           <card v-for="(item, index) in handleData" :key="index" :info="item" />
         </div>
       </div>
-      <div v-else class="home-empty">
-        <i class="el-icon-milk-tea" />
-        <div>空空如也～～继续喝奶茶～～</div>
-      </div>
+      <empty-panel v-else />
     </div>
   </div>
 </template>
@@ -30,12 +27,14 @@ import nav_header from "../components/navHeader";
 import leftNav from "../components/leftNav";
 import card from "./card";
 import db from "../utils/dbStore";
+import emptyPanel from "./Empty";
 
 export default {
   components: {
     nav_header,
     leftNav,
     card,
+    emptyPanel,
   },
   data() {
     return {
@@ -149,24 +148,5 @@ export default {
 
 input::-webkit-input-placeholder {
   color: #c0c4cc;
-}
-
-.home-empty {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  color: #606266;
-}
-
-.home-empty i {
-  font-size: 46px;
-}
-
-.home-empty div {
-  font-size: 20px;
-  margin-top: 30px;
 }
 </style>
