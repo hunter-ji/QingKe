@@ -10,6 +10,10 @@
 
 
 
+> 后来突然来劲，去学了下swift，用swift开发了一遍，叫做[rePass](https://apps.apple.com/cn/app/repass/id1570028651)，且上线App Store了，搞了个icloud同步 + 跨平台，加入了苹果设备的生物识别功能，有兴趣的小伙伴可以试试。😄
+
+
+
 ## 下载
 
 [Mac](https://github.com/Kuari/QingKe/releases/download/v1.0.0/qingke-1.0.0.dmg)
